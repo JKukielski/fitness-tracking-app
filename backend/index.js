@@ -13,6 +13,9 @@ app.use(helmet());
 app.use(morgan('common'));
 app.use(cors());
 
+//basic endpoint for postman testing: SUCCESS
+app.get('/api', (req, res) => res.send('Successful endpoint test'));
+
 async function connectToMongoDB() {
   try {
     await mongoose.connect(process.env.MONGO_URI);
