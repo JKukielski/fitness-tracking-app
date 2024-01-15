@@ -1,11 +1,12 @@
 import express from 'express';
-import { register } from '../controllers/auth.js';
+import { register, login } from '../controllers/auth.js';
 
 // Create an Express router
 const router = express.Router();
 
-//LOGIN
-// router.post('/login', login);
+// LOGIN Endpoint
+// Handles POST requests to the '/login' route by invoking the 'login' function
+router.post('/login', login);
 
 // REGISTER Endpoint
 // Handles POST requests to the '/register' route by invoking the 'register' function

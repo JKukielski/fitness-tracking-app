@@ -1,6 +1,7 @@
 import express from 'express';
 import User from '../models/User.js';
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 // Registration controller function
 export const register = async (req, res) => {
@@ -26,6 +27,27 @@ export const register = async (req, res) => {
     res.status(200).json(savedUser);
   } catch (err) {
     // Handle errors and respond with a 500 Internal Server Error along with an error message
+    res.status(500).json({ error: err.message });
+  }
+};
+
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res.status(401).json({ msg: 'No user found.' });
+    }
+
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.status(401).json({ msg: 'Invalid credentials' });
+    }
+    const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+    delete user.password;
+    res.status(200).send({ token, user });
+  } catch (err) {
     res.status(500).json({ error: err.message });
   }
 };
