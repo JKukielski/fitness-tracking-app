@@ -5,6 +5,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
+import authRoutes from './routes/auth.js';
 
 dotenv.config();
 const app = express();
@@ -12,6 +13,10 @@ app.use(express.json());
 app.use(helmet());
 app.use(morgan('common'));
 app.use(cors());
+
+//REGISTER ENDPOINT
+
+app.use('/api/auth', authRoutes);
 
 //basic endpoint for postman testing: SUCCESS
 app.get('/api', (req, res) => res.send('Successful endpoint test'));
