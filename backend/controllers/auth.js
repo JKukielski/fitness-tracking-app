@@ -41,15 +41,15 @@ export const login = async (req, res) => {
 
     // If no user is found, respond with a 401 Unauthorized status and a message
     if (!user) {
-      return res.status(401).json({ msg: 'No user found.' });
+      return res.status(400).json({ errors: { email: 'Invalid email' } });
     }
 
     // Compare the provided password with the stored hashed password using bcrypt
-    const isMatch = await bcrypt.compare(password, user.password);
+    const isPasswordMatch = await bcrypt.compare(password, user.password);
 
     // If the passwords do not match, respond with a 401 Unauthorized status and a message
-    if (!isMatch) {
-      return res.status(401).json({ msg: 'Invalid credentials' });
+    if (!isPasswordMatch) {
+      return res.status(400).json({ errors: { password: 'Invalid password' } });
     }
 
     // Create a JWT token with the user's ID and the specified secret
