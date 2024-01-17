@@ -9,6 +9,19 @@ export const register = async (req, res) => {
     // Extract user details (email, username, password) from the request body
     const { email, username, password } = req.body;
 
+    const existingEmail = await User.findOne({ email });
+    if (existingEmail) {
+      return res
+        .status(400)
+        .json({ errors: { email: 'User with provided email already exists' } });
+    }
+
+    const existingUsername = await User.findOne({ username });
+    if (existingUsername) {
+      return res
+        .status(400)
+        .json({ errors: { email: 'Username already exists' } });
+    }
     // Generate a salt for password hashing
     const salt = await bcrypt.genSalt();
     // Hash the password using the generated salt
