@@ -31,21 +31,33 @@ export const register = async (req, res) => {
   }
 };
 
+//Login controller function
 export const login = async (req, res) => {
   try {
+    // Extract email and password from the request body
     const { email, password } = req.body;
+    // Find a user with the specified email in the MongoDB database
     const user = await User.findOne({ email: email });
 
+    // If no user is found, respond with a 401 Unauthorized status and a message
     if (!user) {
       return res.status(401).json({ msg: 'No user found.' });
     }
 
+    // Compare the provided password with the stored hashed password using bcrypt
     const isMatch = await bcrypt.compare(password, user.password);
+
+    // If the passwords do not match, respond with a 401 Unauthorized status and a message
     if (!isMatch) {
       return res.status(401).json({ msg: 'Invalid credentials' });
     }
+
+    // Create a JWT token with the user's ID and the specified secret
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
+
+    // Remove the 'password' field from the user object before sending the response
     delete user.password;
+
     res.status(200).send({ token, user });
   } catch (err) {
     res.status(500).json({ error: err.message });
