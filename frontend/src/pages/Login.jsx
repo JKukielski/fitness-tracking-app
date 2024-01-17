@@ -9,6 +9,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [errors, setErrors] = useState({ email: '', password: '' });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,10 +33,19 @@ const Login = () => {
 
         navigate('/');
       }
-
-      // console.log('Login successful', response.data.user.email);
     } catch (err) {
-      console.log(err);
+      if (err.response) {
+        console.error('Login failed with status:', err.response.status);
+
+        setErrors({
+          email: err.response.data.errors?.email || '',
+          password: err.response.data.errors?.password || '',
+        });
+      } else if (err.request) {
+        console.error('No response received');
+      } else {
+        console.error('Error setting up the request:', err.message);
+      }
     }
   };
 
@@ -52,6 +62,7 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
+        <p>{errors.email}</p>
         <label htmlFor="password">
           Password
           <input
@@ -62,6 +73,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
+        <p>{errors.password}</p>
         <button type="submit">Login</button>
       </form>
     </div>
