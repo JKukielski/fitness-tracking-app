@@ -12,15 +12,29 @@ const Register = () => {
     password: '',
   });
   const navigate = useNavigate();
-
-  const isPasswordValid = (password) => {
-    return (
-      password.length >= 8 && /[a-zA-Z]/.test(password) && /\d/.test(password)
-    );
-  };
+  let initialErrors = {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+
+    if (password.length < 8) {
+      initialErrors.password = 'Password must be at least 8 characters long';
+    }
+
+    if (username.length < 5) {
+      initialErrors.username = 'Username must be at least 5 characters long';
+    }
+
+    if (email.length === 0 || !emailRegex.test(email)) {
+      initialErrors.email = 'Please enter a valid email address';
+    }
+
+    if (Object.keys(initialErrors).length > 0) {
+      setErrors(initialErrors);
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -32,13 +46,6 @@ const Register = () => {
         }
       );
 
-      if (!isPasswordValid(password)) {
-        setErrors({
-          ...errors,
-          password:
-            'Password must be at least 8 characters long and include letters and numbers',
-        });
-      }
       if (response) {
         navigate('/login');
       }
@@ -46,11 +53,11 @@ const Register = () => {
       if (err.response) {
         console.error('Registration failed with status:', err.response.status);
 
-        setErrors({
+        setErrors((prevErrors) => ({
+          ...prevErrors,
           email: err.response.data.errors?.email || '',
           username: err.response.data.errors?.username || '',
-          password: '',
-        });
+        }));
       } else if (err.request) {
         console.error('No response received');
       } else {
@@ -73,6 +80,7 @@ const Register = () => {
           />
         </label>
         <p>{errors.email}</p>
+        <p>{initialErrors.email}</p>
         <label htmlFor="username">
           Username
           <input
@@ -84,7 +92,7 @@ const Register = () => {
           />
         </label>
         <p>{errors.username}</p>
-
+        <p>{initialErrors.username}</p>
         <label htmlFor="password">
           Password
           <input
@@ -96,7 +104,7 @@ const Register = () => {
           />
         </label>
         <p>{errors.password}</p>
-
+        <p>{initialErrors.password}</p>
         <button type="submit">Register</button>
       </form>
     </div>
