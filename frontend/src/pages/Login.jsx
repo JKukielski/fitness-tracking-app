@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { login } from '../state/userSlice';
+import '../styles/LoginRegister.css';
+import images from '../constants/images';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -50,11 +52,14 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="form">
+        <img src={images.loginRegister} alt="" className="form-image" />
+        <p className="form-welcome">Welcome back!</p>
+        <label htmlFor="email" className="form-label">
           Email
           <input
+            className="form-input"
             type="email"
             id="email"
             name="email"
@@ -62,10 +67,11 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <p>{errors.email}</p>
-        <label htmlFor="password">
+        <p className="form-error">{errors.email}</p>
+        <label htmlFor="password" className="form-label">
           Password
           <input
+            className="form-input"
             type="password"
             id="password"
             name="password"
@@ -73,8 +79,15 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <p>{errors.password}</p>
-        <button type="submit">Login</button>
+        <p className="form-error">{errors.password}</p>
+
+        <p className="form-redirect">
+          Don't have an account yet? <Link to="/register">Sign up</Link>!
+        </p>
+
+        <button type="submit" className="form-button">
+          Login
+        </button>
       </form>
     </div>
   );

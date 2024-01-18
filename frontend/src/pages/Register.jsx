@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import '../styles/LoginRegister.css';
+import images from '../constants/images';
 
 const Register = () => {
   const [email, setEmail] = useState('');
@@ -67,11 +69,14 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">
+    <div className="form-container">
+      <form onSubmit={handleSubmit} className="form">
+        <img src={images.loginRegister} alt="" className="form-image" />
+        <p className="form-welcome">Sign up now and track your progress!</p>
+        <label htmlFor="email" className="form-label">
           Email
           <input
+            className="form-input"
             type="email"
             id="email"
             name="email"
@@ -79,11 +84,12 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <p>{errors.email}</p>
-        <p>{initialErrors.email}</p>
-        <label htmlFor="username">
+        <p className="form-error">{errors.email}</p>
+        <p className="form-error">{initialErrors.email}</p>
+        <label htmlFor="username" className="form-label">
           Username
           <input
+            className="form-input"
             type="text"
             id="username"
             name="username"
@@ -91,11 +97,12 @@ const Register = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
-        <p>{errors.username}</p>
-        <p>{initialErrors.username}</p>
-        <label htmlFor="password">
+        <p className="form-error">{errors.username}</p>
+        <p className="form-error">{initialErrors.username}</p>
+        <label htmlFor="password" className="form-label">
           Password
           <input
+            className="form-input"
             type="password"
             id="password"
             name="password"
@@ -103,9 +110,16 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <p>{errors.password}</p>
-        <p>{initialErrors.password}</p>
-        <button type="submit">Register</button>
+        <p className="form-error">{errors.password}</p>
+        <p className="form-error">{initialErrors.password}</p>
+
+        <p className="form-redirect">
+          Already a user? <Link to="/login">Sign in</Link>!
+        </p>
+
+        <button type="submit" className="form-button">
+          Register
+        </button>
       </form>
     </div>
   );
