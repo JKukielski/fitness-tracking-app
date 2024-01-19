@@ -68,6 +68,12 @@
     background-color: var(--color-contrast);
     color: #FFF;
     font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.form-button:hover {
+    background-color: #FFF;
+    color: var(--color-contrast);
 }
 
 .form-error {
