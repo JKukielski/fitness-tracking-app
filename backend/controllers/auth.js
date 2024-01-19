@@ -20,7 +20,7 @@ export const register = async (req, res) => {
     if (existingUsername) {
       return res
         .status(400)
-        .json({ errors: { email: 'Username already exists' } });
+        .json({ errors: { username: 'Username already exists' } });
     }
     // Generate a salt for password hashing
     const salt = await bcrypt.genSalt();
@@ -54,7 +54,9 @@ export const login = async (req, res) => {
 
     // If no user is found, respond with a 401 Unauthorized status and a message
     if (!user) {
-      return res.status(400).json({ errors: { email: 'Invalid email' } });
+      return res
+        .status(400)
+        .json({ errors: { email: 'Please enter a valid email address' } });
     }
 
     // Compare the provided password with the stored hashed password using bcrypt
@@ -62,7 +64,9 @@ export const login = async (req, res) => {
 
     // If the passwords do not match, respond with a 401 Unauthorized status and a message
     if (!isPasswordMatch) {
-      return res.status(400).json({ errors: { password: 'Invalid password' } });
+      return res
+        .status(400)
+        .json({ errors: { password: 'Incorrect password. Please try again' } });
     }
 
     // Create a JWT token with the user's ID and the specified secret
