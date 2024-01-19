@@ -12,9 +12,21 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [errors, setErrors] = useState({ email: '', password: '' });
+  let initialErrors = {};
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
+
+    if (email.length === 0 || !emailRegex.test(email)) {
+      initialErrors.email = 'Please enter a valid email address';
+    }
+
+    if (Object.keys(initialErrors).length > 0) {
+      setErrors(initialErrors);
+      return;
+    }
 
     try {
       const response = await axios.post(
@@ -39,10 +51,11 @@ const Login = () => {
       if (err.response) {
         console.error('Login failed with status:', err.response.status);
 
-        setErrors({
+        setErrors((prevErrros) => ({
+          ...prevErrros,
           email: err.response.data.errors?.email || '',
           password: err.response.data.errors?.password || '',
-        });
+        }));
       } else if (err.request) {
         console.error('No response received');
       } else {
@@ -68,6 +81,7 @@ const Login = () => {
           />
         </label>
         <p className="form-error">{errors.email}</p>
+        <p className="form-error">{initialErrors.email}</p>
         <label htmlFor="password" className="form-label">
           Password
           <input
