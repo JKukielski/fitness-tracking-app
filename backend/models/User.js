@@ -9,6 +9,11 @@ const UserSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
+    name: {
+      type: String,
+      required: true,
+      min: 2,
+    },
     // Username field with type String, required, minimum length of 3 characters, and unique constraints
     username: {
       type: String,

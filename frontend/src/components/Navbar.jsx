@@ -36,7 +36,7 @@ const Navbar = () => {
         <FaUserAlt className="small-device-user" />
         {userIconOpen && (
           <div className="options-container">
-            <Link className="options-link-user" to="/">
+            <Link className="options-link-user" to="/user">
               USER PROFILE
             </Link>
             <div className="options-split"></div>

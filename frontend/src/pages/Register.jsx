@@ -6,6 +6,7 @@ import images from '../constants/images';
 
 const Register = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({
@@ -29,6 +30,10 @@ const Register = () => {
       initialErrors.username = 'Username must be at least 5 characters long';
     }
 
+    if (name.length < 2) {
+      initialErrors.name = 'Name must be at least 2 characters long';
+    }
+
     if (email.length === 0 || !emailRegex.test(email)) {
       initialErrors.email = 'Please enter a valid email address';
     }
@@ -43,6 +48,7 @@ const Register = () => {
         'http://localhost:3001/api/auth/register',
         {
           email,
+          name,
           username,
           password,
         }
@@ -73,6 +79,20 @@ const Register = () => {
       <form onSubmit={handleSubmit} className="form">
         <img src={images.loginRegister} alt="" className="form-image" />
         <p className="form-welcome">Sign up now and track your progress!</p>
+        <label htmlFor="name" className="form-label">
+          Name
+          <input
+            className="form-input"
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </label>
+        {initialErrors.name && (
+          <p className="form-error">{initialErrors.name}</p>
+        )}
         <label htmlFor="email" className="form-label">
           Email
           <input
@@ -84,8 +104,10 @@ const Register = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <p className="form-error">{errors.email}</p>
-        <p className="form-error">{initialErrors.email}</p>
+        {errors.email && <p className="form-error">{errors.email}</p>}
+        {initialErrors.email && (
+          <p className="form-error">{initialErrors.email}</p>
+        )}
         <label htmlFor="username" className="form-label">
           Username
           <input
@@ -97,8 +119,10 @@ const Register = () => {
             onChange={(e) => setUsername(e.target.value)}
           />
         </label>
-        <p className="form-error">{errors.username}</p>
-        <p className="form-error">{initialErrors.username}</p>
+        {errors.username && <p className="form-error">{errors.username}</p>}
+        {initialErrors.username && (
+          <p className="form-error">{initialErrors.username}</p>
+        )}
         <label htmlFor="password" className="form-label">
           Password
           <input
@@ -110,8 +134,10 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <p className="form-error">{errors.password}</p>
-        <p className="form-error">{initialErrors.password}</p>
+        {errors.password && <p className="form-error">{errors.password}</p>}
+        {initialErrors.password && (
+          <p className="form-error">{initialErrors.password}</p>
+        )}
 
         <p className="form-redirect">
           Already a user? <Link to="/login">Sign in</Link>!

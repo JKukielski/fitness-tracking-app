@@ -47,6 +47,7 @@ const Login = () => {
 
         navigate('/');
       }
+      console.log(response.data);
     } catch (err) {
       if (err.response) {
         console.error('Login failed with status:', err.response.status);
@@ -80,8 +81,10 @@ const Login = () => {
             onChange={(e) => setEmail(e.target.value)}
           />
         </label>
-        <p className="form-error">{errors.email}</p>
-        <p className="form-error">{initialErrors.email}</p>
+        {errors.email && <p className="form-error">{errors.email}</p>}
+        {initialErrors.email && (
+          <p className="form-error">{initialErrors.email}</p>
+        )}
         <label htmlFor="password" className="form-label">
           Password
           <input
@@ -93,7 +96,7 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
         </label>
-        <p className="form-error">{errors.password}</p>
+        {errors.email && <p className="form-error">{errors.email}</p>}
 
         <p className="form-redirect">
           Don't have an account yet? <Link to="/register">Sign up</Link>!
