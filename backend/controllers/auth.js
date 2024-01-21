@@ -7,7 +7,7 @@ import jwt from 'jsonwebtoken';
 export const register = async (req, res) => {
   try {
     // Extract user details (email, username, password) from the request body
-    const { email, name, username, password } = req.body;
+    const { email, name, username, gender, password } = req.body;
 
     const existingEmail = await User.findOne({ email });
     if (existingEmail) {
@@ -32,6 +32,7 @@ export const register = async (req, res) => {
       email,
       name,
       username,
+      gender,
       password: hashedPassword,
     });
 

@@ -21,6 +21,10 @@ const UserSchema = new mongoose.Schema(
       min: 3,
       unique: true,
     },
+    gender: {
+      type: String,
+      required: true,
+    },
     // Password field with type String and required constraints, minimum length of 8 characters
     password: {
       type: String,
