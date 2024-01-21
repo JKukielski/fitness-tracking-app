@@ -1,5 +1,5 @@
 import '../styles/Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { logout } from '../state/userSlice';
 import { IoIosLogOut } from 'react-icons/io';
@@ -8,10 +8,12 @@ import { useState } from 'react';
 
 const Navbar = () => {
   const [userIconOpen, setUserIconOpen] = useState(false);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const logoutUser = (e) => {
     e.preventDefault();
     dispatch(logout());
+    navigate('/login');
   };
   return (
     <div className="navbar-container">
@@ -19,7 +21,7 @@ const Navbar = () => {
         FITNESS TRACKING
       </Link>
       <div className="navbar-additional-links">
-        <Link className="additional-link-user" to="/">
+        <Link className="additional-link-user" to="/user">
           USER PROFILE
         </Link>
         <div className="additonal-link-container">

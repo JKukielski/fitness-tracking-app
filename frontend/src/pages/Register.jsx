@@ -8,11 +8,14 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
   const [username, setUsername] = useState('');
+  const [gender, setGender] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({
     email: '',
     username: '',
     password: '',
+    name: '',
+    gender: '',
   });
   const navigate = useNavigate();
   let initialErrors = {};
@@ -38,6 +41,10 @@ const Register = () => {
       initialErrors.email = 'Please enter a valid email address';
     }
 
+    if (gender === '') {
+      initialErrors.gender = 'Please choose your gender';
+    }
+
     if (Object.keys(initialErrors).length > 0) {
       setErrors(initialErrors);
       return;
@@ -50,6 +57,7 @@ const Register = () => {
           email,
           name,
           username,
+          gender,
           password,
         }
       );
@@ -122,6 +130,22 @@ const Register = () => {
         {errors.username && <p className="form-error">{errors.username}</p>}
         {initialErrors.username && (
           <p className="form-error">{initialErrors.username}</p>
+        )}
+        <label htmlFor="gender" className="form-label">
+          Gender
+          <select
+            name="gender"
+            id="gender"
+            value={gender}
+            onChange={(e) => setGender(e.target.value)}
+          >
+            <option value="">Choose your gender</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+          </select>
+        </label>
+        {initialErrors.gender && (
+          <p className="form-error">{initialErrors.gender}</p>
         )}
         <label htmlFor="password" className="form-label">
           Password
