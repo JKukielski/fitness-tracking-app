@@ -25,23 +25,23 @@ const Register = () => {
 
     const emailRegex = /^[\w-]+(\.[\w-]+)*@[\w-]+(\.[\w-]+)+$/;
 
-    if (password.length < 8) {
-      initialErrors.password = 'Password must be at least 8 characters long';
-    }
-
-    if (username.length < 5) {
-      initialErrors.username = 'Username must be at least 5 characters long';
+    if (email.length === 0 || !emailRegex.test(email)) {
+      initialErrors.email = 'Please enter a valid email address';
     }
 
     if (name.length < 2) {
       initialErrors.name = 'Name must be at least 2 characters long';
     }
 
-    if (email.length === 0 || !emailRegex.test(email)) {
-      initialErrors.email = 'Please enter a valid email address';
+    if (username.length < 5) {
+      initialErrors.username = 'Username must be at least 5 characters long';
     }
 
-    if (gender === '') {
+    if (password.length < 8) {
+      initialErrors.password = 'Password must be at least 8 characters long';
+    }
+
+    if (gender.length === 0) {
       initialErrors.gender = 'Please choose your gender';
     }
 
@@ -86,7 +86,6 @@ const Register = () => {
     <div className="form-container">
       <form onSubmit={handleSubmit} className="form">
         <img src={images.loginRegister} alt="" className="form-image" />
-        <p className="form-welcome">Sign up now and track your progress!</p>
         <label htmlFor="name" className="form-label">
           Name
           <input
@@ -98,9 +97,7 @@ const Register = () => {
             onChange={(e) => setName(e.target.value)}
           />
         </label>
-        {initialErrors.name && (
-          <p className="form-error">{initialErrors.name}</p>
-        )}
+        {errors.name && <p className="form-error">{errors.name}</p>}
         <label htmlFor="email" className="form-label">
           Email
           <input
@@ -144,9 +141,7 @@ const Register = () => {
             <option value="female">Female</option>
           </select>
         </label>
-        {initialErrors.gender && (
-          <p className="form-error">{initialErrors.gender}</p>
-        )}
+        {errors.gender && <p className="form-error">{errors.gender}</p>}
         <label htmlFor="password" className="form-label">
           Password
           <input
