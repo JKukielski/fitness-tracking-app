@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 :root{
-     --color-primary: #CAC7FF;
-     --color-primary-light: #E2E0FF;
-     --color-primary-dark: #736E9E;
-     --color-contrast: #6C63FF;
+     --color-primary: #6b6b6b;
+     --color-primary-light: #ebebeb;
+     --color-primary-dark: #272727;
+     --color-contrast: #f3f3f8;
 }
 
 * {
@@ -17,4 +17,52 @@
 a {
     text-decoration: none;
     color: #000;
+}
+
+.primary-button {
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--color-primary-dark);
+    color: var(--color-contrast);
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.primary-button:hover {
+    background-color: var(--color-contrast);
+    color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary-dark)
+}
+
+.secondary-button {
+    width: 90%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--color-contrast);
+    color: var(--color-primary-dark);
+    border: 2px solid var(--color-primary-dark);
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.secondary-button:hover {
+    background-color: var(--color-primary-dark);
+    color: var(--color-contrast);
+}
+
+
+.form-input, select {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: var(--color-contrast);
+    border: 1px solid var(--color-primary-dark);
+    outline: none;
 }

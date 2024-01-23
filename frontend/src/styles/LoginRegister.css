@@ -4,22 +4,17 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-primary-light);
 }
 
 .form {  
     width: 95%;
     max-width: 400px;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
     border-radius: 15px;
     padding: 30px 10px;
-
-    background-color: var(--color-primary);
     -webkit-box-shadow: 2px 2px 22px 0px rgba(163, 163, 163, 1);
     -moz-box-shadow: 2px 2px 22px 0px rgba(163, 163, 163, 1);
     box-shadow: 2px 2px 22px 0px rgba(163, 163, 163, 1);
@@ -44,16 +39,6 @@
     font-size: 12px;
 }
 
-.form-input, select {
-    margin-top: 5px;
-    margin-bottom: 10px;
-    padding: 10px;
-    border-radius: 5px;
-    font-size: 12px;
-    background-color: var(--color-primary-light);
-    border: none;
-    outline: none;
-}
 
 .form-redirect {
     width: 90%;
@@ -61,22 +46,6 @@
     font-size: 12px;
 }
 
-.form-button {
-    width: 90%;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    border: none;
-    background-color: var(--color-contrast);
-    color: #FFF;
-    font-weight: 600;
-    transition: all 0.3s ease-in-out;
-}
-
-.form-button:hover {
-    background-color: #FFF;
-    color: var(--color-contrast);
-}
 
 .form-error {
     font-size: 10px;

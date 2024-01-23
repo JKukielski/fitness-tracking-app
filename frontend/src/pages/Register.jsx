@@ -162,7 +162,7 @@ const Register = () => {
           Already a user? <Link to="/login">Sign in</Link>!
         </p>
 
-        <button type="submit" className="form-button">
+        <button type="submit" className="primary-button">
           Register
         </button>
       </form>
