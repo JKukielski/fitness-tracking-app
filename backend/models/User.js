@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 // Define a schema for the 'User' model
 const UserSchema = new mongoose.Schema(
   {
-    // Email field with type String, required, and unique constraints
     email: {
       type: String,
       required: true,
@@ -14,7 +13,6 @@ const UserSchema = new mongoose.Schema(
       required: true,
       min: 2,
     },
-    // Username field with type String, required, minimum length of 3 characters, and unique constraints
     username: {
       type: String,
       required: true,
@@ -25,7 +23,17 @@ const UserSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    // Password field with type String and required constraints, minimum length of 8 characters
+    dateOfBirth: {
+      type: Date,
+    },
+    weight: {
+      type: Number,
+      default: null,
+    },
+    height: {
+      type: Number,
+      default: null,
+    },
     password: {
       type: String,
       required: true,

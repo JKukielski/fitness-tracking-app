@@ -6,6 +6,7 @@ import dotenv from 'dotenv';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import authRoutes from './routes/auth.js';
+import userRoutes from './routes/users.js';
 
 dotenv.config(); // Load environment variables from the .env file
 const app = express(); // Create an Express application
@@ -16,6 +17,7 @@ app.use(cors()); // CORS middleware to enable Cross-Origin Resource Sharing
 
 // Registering authentication endpoints from the 'authRoutes' module
 app.use('/api/auth', authRoutes);
+app.use('/api/users', userRoutes);
 
 // Basic endpoint for testing in Postman
 app.get('/api', (req, res) => res.send('Successful endpoint test'));
