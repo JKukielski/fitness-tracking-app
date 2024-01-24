@@ -1,18 +1,54 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import images from '../constants/images';
 import '../styles/UserPage.css';
 import { GoPencil } from 'react-icons/go';
-
 import UserLink from '../components/UserLink';
 import { useState } from 'react';
+import axios from 'axios';
+import { updateUser } from '../state/userSlice.js';
 
 const UserPage = () => {
   const { user } = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   const [isEditable, setIsEditable] = useState(false);
+  const [name, setName] = useState('');
+  const [date, setDate] = useState('');
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+
+  const submitUpdateUser = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.patch(
+        `http://localhost:3001/api/users/${user._id}`,
+        {
+          name,
+          date,
+          weight,
+          height,
+        }
+      );
+
+      if (response) {
+        dispatch(
+          updateUser({
+            user: response.data,
+          })
+        );
+      }
+
+      setIsEditable(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const handleEditClick = (e) => {
     e.preventDefault();
     setIsEditable(!isEditable);
   };
+
+  console.log(user.name);
 
   return (
     <div className="user-container">
@@ -24,7 +60,7 @@ const UserPage = () => {
             <div className="user-info-underline"></div>
             <GoPencil className="user-edit-icon" />
           </div>
-          <form className="user-info-form">
+          <form className="user-info-form" onSubmit={submitUpdateUser}>
             <label htmlFor="name" className="form-label">
               Name
               <input
@@ -32,7 +68,10 @@ const UserPage = () => {
                 type="text"
                 id="name"
                 name="name"
+                value={name}
+                placeholder={user?.name}
                 disabled={!isEditable}
+                onChange={(e) => setName(e.target.value)}
               />
             </label>
             <label htmlFor="email" className="form-label">
@@ -42,18 +81,23 @@ const UserPage = () => {
                 type="email"
                 id="email"
                 name="email"
-                placeholder={user.email}
+                placeholder={user?.email}
                 disabled
               />
             </label>
-            <label htmlFor="age" className="form-label">
-              Age
+            <label htmlFor="dob" className="form-label">
+              Date of Birth
               <input
-                className="form-input disabled"
+                className={isEditable ? 'form-input' : 'form-input disabled'}
                 type="text"
-                id="age"
-                name="age"
-                disabled
+                id="dob"
+                name="dob"
+                value={date}
+                disabled={!isEditable}
+                placeholder={user?.dateOfBirth}
+                onFocus={(e) => (e.target.type = 'date')}
+                onBlur={(e) => (e.target.type = 'text')}
+                onChange={(e) => setDate(e.target.value)}
               />
             </label>
             <label htmlFor="weight" className="form-label">
@@ -63,6 +107,9 @@ const UserPage = () => {
                 type="text"
                 id="weight"
                 name="weight"
+                value={weight}
+                placeholder={user?.weight}
+                onChange={(e) => setWeight(e.target.value)}
                 disabled={!isEditable}
               />
             </label>
@@ -73,6 +120,9 @@ const UserPage = () => {
                 type="text"
                 id="height"
                 name="name"
+                value={height}
+                placeholder={user?.height}
+                onChange={(e) => setHeight(e.target.value)}
                 disabled={!isEditable}
               />
             </label>

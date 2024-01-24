@@ -27,11 +27,11 @@ const UserSchema = new mongoose.Schema(
       type: Date,
     },
     weight: {
-      type: Number,
+      type: String,
       default: null,
     },
     height: {
-      type: Number,
+      type: String,
       default: null,
     },
     password: {
