@@ -12,9 +12,10 @@ const UserPage = () => {
   const dispatch = useDispatch();
   const [isEditable, setIsEditable] = useState(false);
   const [name, setName] = useState('');
-  const [date, setDate] = useState('');
+  const [dateOfBirth, setDateOfBirth] = useState('');
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
+  const options = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
   const submitUpdateUser = async (e) => {
     e.preventDefault();
@@ -23,7 +24,7 @@ const UserPage = () => {
         `http://localhost:3001/api/users/${user._id}`,
         {
           name,
-          date,
+          dateOfBirth,
           weight,
           height,
         }
@@ -47,8 +48,6 @@ const UserPage = () => {
     e.preventDefault();
     setIsEditable(!isEditable);
   };
-
-  console.log(user.name);
 
   return (
     <div className="user-container">
@@ -92,12 +91,25 @@ const UserPage = () => {
                 type="text"
                 id="dob"
                 name="dob"
-                value={date}
+                value={dateOfBirth}
                 disabled={!isEditable}
                 placeholder={user?.dateOfBirth}
                 onFocus={(e) => (e.target.type = 'date')}
                 onBlur={(e) => (e.target.type = 'text')}
-                onChange={(e) => setDate(e.target.value)}
+                onChange={(e) => setDateOfBirth(e.target.value)}
+              />
+            </label>
+            <label htmlFor="name" className="form-label">
+              Gender
+              <input
+                className="form-input disabled"
+                type="text"
+                id="gender"
+                name="gender"
+                placeholder={`${user?.gender
+                  .charAt(0)
+                  .toUpperCase()}${user?.gender.substring(1)}`}
+                disabled
               />
             </label>
             <label htmlFor="weight" className="form-label">
