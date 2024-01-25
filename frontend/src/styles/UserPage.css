@@ -83,3 +83,27 @@
     color: rgb(23, 180, 3);
     font-size: 12px;
 }
+
+@media screen and (max-width: 768px) {
+     .user-page-image-container {
+        display: none;
+     }
+
+     .user-page-info-container {
+        width: 100%;
+        margin: 0px 0;
+     }
+}
+
+
+@media screen and (max-width: 425px) {
+    .user-page-info-container {
+       padding: 10px 20px;
+    }
+
+    .user-info-underline, .form-label, .user-button-container {
+        width: 100%;
+    }
+
+
+}
