@@ -67,7 +67,7 @@
     width: 90%;
     display: flex;
     justify-content: space-between;
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .user-primary-button {
@@ -77,4 +77,9 @@
 
 .form-input.disabled {
     border: none;
+}
+
+.success {
+    color: rgb(23, 180, 3);
+    font-size: 12px;
 }
