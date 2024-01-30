@@ -7,11 +7,13 @@ const CarouselComponent = () => {
 
   return (
     <div className="carousel-container">
-      {items.map((item, index) => (
-        <div key={index} className="carousel-item">
-          {item}
-        </div>
-      ))}
+      <div className="carousel">
+        {items.map((item, index) => (
+          <div key={index} className="carousel-item">
+            {item}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
