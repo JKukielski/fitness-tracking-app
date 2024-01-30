@@ -1,0 +1,64 @@
+import axios from 'axios';
+import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../state/userSlice';
+
+const BMI = () => {
+  const [weight, setWeight] = useState(0);
+  const [height, setHeight] = useState(0);
+  const [success, setSuccess] = useState('');
+  const { user } = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
+
+  const handleSubmitBMI = async (e) => {
+    e.preventDefault();
+    const heightInMeters = height / 100;
+    const bmi = (weight / (heightInMeters * heightInMeters)).toFixed(2);
+
+    try {
+      const response = await axios.patch(
+        `http://localhost:3001/api/users/${user._id}`,
+        {
+          bmi,
+        }
+      );
+      if (response) {
+        dispatch(updateUser({ user: response.data }));
+      }
+      setSuccess('BMI updated successfully');
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  return (
+    <form className="bmi-container" onSubmit={handleSubmitBMI}>
+      <label htmlFor="weight" className="bmi-label">
+        Current weight
+        <input
+          type="number"
+          name="weight"
+          id="weight"
+          value={weight}
+          className="bmi-input"
+          onChange={(e) => setWeight(e.target.value)}
+        />
+      </label>
+      <label htmlFor="height" className="bmi-label">
+        Current height
+        <input
+          type="number"
+          name="height"
+          id="height"
+          value={height}
+          className="bmi-input"
+          onChange={(e) => setHeight(e.target.value)}
+        />
+      </label>
+      <button type="submit">Calculate BMI</button>
+      <p className="bmi-success">{success}</p>
+    </form>
+  );
+};
+
+export default BMI;

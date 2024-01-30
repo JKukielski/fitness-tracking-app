@@ -34,6 +34,12 @@ const UserSchema = new mongoose.Schema(
       type: String,
       default: null,
     },
+    bmi: {
+      type: Number,
+    },
+    bmr: {
+      type: Number,
+    },
     password: {
       type: String,
       required: true,
