@@ -6,14 +6,16 @@ import BMR from '../components/BMR';
 
 const HomePage = () => {
   return (
-    <div className="home-container">
+    <>
       <Navbar />
-      <CarouselComponent />
-      <div className="home-inner-container">
-        <BMI />
-        <BMR />
+      <div className="home-container">
+        <CarouselComponent />
+        <div className="home-inner-container">
+          <BMI />
+          <BMR />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

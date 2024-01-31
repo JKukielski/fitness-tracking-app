@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../state/userSlice';
+import '../styles/BmiBmr.css';
 
 const BMR = () => {
   const [weight, setWeight] = useState(0);
@@ -112,7 +113,11 @@ const BMR = () => {
           onChange={(e) => setAge(e.target.value)}
         />
       </label>
-      <button type="submit">Calculate BMR</button>
+      <div className="measurement-button-container">
+        <button type="submit" className="primary-button primary-button-bm">
+          Calculate BMR
+        </button>
+      </div>
       <p className="bmi-success">{success}</p>
     </form>
   );

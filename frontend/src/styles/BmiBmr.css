@@ -1,0 +1,45 @@
+.bmi-container, .bmr-container {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-primary-light);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.bmi-container {
+    margin: 10px 0;
+}
+
+.measurement-label {
+    display: flex;
+    flex-direction: column;
+    font-size: 12px;
+}
+
+.measurement-input {
+    margin-top: 5px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    background-color: var(--color-contrast);
+    border: 1px solid var(--color-primary-dark);
+    outline: none;
+    width: 70%;
+}
+
+.radio-container {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.measurement-button-container {
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.primary-button-bm {
+    width: 35%;
+}

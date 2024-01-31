@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../state/userSlice';
+import '../styles/BmiBmr.css';
 
 const BMI = () => {
   const [weight, setWeight] = useState(0);
@@ -33,29 +34,33 @@ const BMI = () => {
 
   return (
     <form className="bmi-container" onSubmit={handleSubmitBMI}>
-      <label htmlFor="weight" className="bmi-label">
+      <label htmlFor="weight" className="measurement-label">
         Current weight
         <input
           type="number"
           name="weight"
           id="weight"
           value={weight}
-          className="bmi-input"
+          className="measurement-input"
           onChange={(e) => setWeight(e.target.value)}
         />
       </label>
-      <label htmlFor="height" className="bmi-label">
+      <label htmlFor="height" className="measurement-label">
         Current height
         <input
           type="number"
           name="height"
           id="height"
           value={height}
-          className="bmi-input"
+          className="measurement-input"
           onChange={(e) => setHeight(e.target.value)}
         />
       </label>
-      <button type="submit">Calculate BMI</button>
+      <div className="measurement-button-container">
+        <button type="submit" className="primary-button primary-button-bm">
+          Calculate BMI
+        </button>
+      </div>
       <p className="bmi-success">{success}</p>
     </form>
   );
