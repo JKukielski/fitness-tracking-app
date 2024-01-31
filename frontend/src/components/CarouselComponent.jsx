@@ -3,17 +3,14 @@ import '../styles/CarouselComponent.css';
 
 const CarouselComponent = () => {
   const items = ['item1', 'item2', 'item3', 'item4', 'item5'];
-  const [currentElement, setCurrentElement] = useState(0);
 
   return (
     <div className="carousel-container">
-      <div className="carousel">
-        {items.map((item, index) => (
-          <div key={index} className="carousel-item">
-            {item}
-          </div>
-        ))}
-      </div>
+      {items.map((item, index) => (
+        <div key={index} className="carousel-item">
+          {item}
+        </div>
+      ))}
     </div>
   );
 };
