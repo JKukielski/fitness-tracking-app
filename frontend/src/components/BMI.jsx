@@ -34,6 +34,9 @@ const BMI = () => {
 
   return (
     <form className="bmi-container" onSubmit={handleSubmitBMI}>
+      <p className="measurement-heading">
+        Enter your weight and height to calculate BMI
+      </p>
       <label htmlFor="weight" className="measurement-label">
         Current weight
         <input

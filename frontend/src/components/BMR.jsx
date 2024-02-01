@@ -57,6 +57,9 @@ const BMR = () => {
 
   return (
     <form className="bmr-container" onSubmit={handleSubmitBMR}>
+      <p className="measurement-heading">
+        Enter your weight, height and age to calculate BMR
+      </p>
       <div className="radio-container">
         <label htmlFor="">
           Male

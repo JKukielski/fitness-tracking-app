@@ -20,6 +20,11 @@
     grid-row-end: 6;
 }
 
+.measurement-heading {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
 .measurement-label {
     display: flex;
     flex-direction: column;
@@ -47,9 +52,9 @@
     width: 100%;
     margin-top: 10px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
 }
 
-.primary-button-bm {
-    width: 35%;
+.primary-button.primary-button-bm {
+    width: 40%;
 }
