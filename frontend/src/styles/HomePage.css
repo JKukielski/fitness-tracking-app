@@ -1,17 +1,10 @@
 .home-container {
     padding: 0 40px;
-    width: 100%;
+    width: 100vw;
+    height: 100vh;
     display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    gap: 10px;
 }
 
-/* .home-inner-container {
-    display: flex;
-    flex-direction: column;
-    width: 30%;
-} */
-
-@media screen and (max-width: 768px) {
-    .home-container {
-        padding: 0 20px;
-    }
-}

@@ -1,0 +1,8 @@
+.target-container {
+    background-color: var(--color-primary-light);
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 2;
+    grid-row-end: 4;
+    border-radius: 10px;
+}

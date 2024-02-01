@@ -3,6 +3,7 @@ import Navbar from '../components/Navbar';
 import CarouselComponent from '../components/CarouselComponent';
 import BMI from '../components/BMI';
 import BMR from '../components/BMR';
+import TargetInput from '../components/TargetInput';
 
 const HomePage = () => {
   return (
@@ -10,10 +11,9 @@ const HomePage = () => {
       <Navbar />
       <div className="home-container">
         <CarouselComponent />
-        <div className="home-inner-container">
-          <BMI />
-          <BMR />
-        </div>
+        <TargetInput />
+        <BMI />
+        <BMR />
       </div>
     </>
   );
