@@ -50,6 +50,9 @@ const BMR = () => {
         dispatch(updateUser({ user: response.data }));
       }
       setSuccess('BMR updated successfully');
+      setAge(0);
+      setWeight(0);
+      setHeight(0);
     } catch (err) {
       console.error(err);
     }

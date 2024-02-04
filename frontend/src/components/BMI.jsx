@@ -26,7 +26,9 @@ const BMI = () => {
       if (response) {
         dispatch(updateUser({ user: response.data }));
       }
-      setSuccess('BMI updated successfully');
+      setSuccess('BMI updated successfully!');
+      setHeight(0);
+      setWeight(0);
     } catch (err) {
       console.error(err);
     }
