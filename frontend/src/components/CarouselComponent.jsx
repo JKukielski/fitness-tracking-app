@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import '../styles/CarouselComponent.css';
 
 const CarouselComponent = () => {
