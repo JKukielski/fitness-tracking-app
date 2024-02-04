@@ -40,6 +40,9 @@ const UserSchema = new mongoose.Schema(
     bmr: {
       type: Number,
     },
+    targetWeight: {
+      type: Number,
+    },
     password: {
       type: String,
       required: true,
