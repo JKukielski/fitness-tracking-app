@@ -1,7 +1,7 @@
 import '../styles/CarouselComponent.css';
 
 const CarouselComponent = () => {
-  const items = ['item1', 'item2', 'item3', 'item4', 'item5'];
+  const items = ['item1', 'item2', 'item3', 'item4'];
 
   return (
     <div className="carousel-container">

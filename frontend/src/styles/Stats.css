@@ -1,0 +1,15 @@
+.stats-container {
+    background-color: var(--color-primary-light);
+    border-radius: 10px;
+    padding: 20px;
+    grid-column-start: 2;
+    grid-column-end: 6;
+    grid-row-start: 2;
+    grid-row-end: 5;
+}
+
+@media screen and (max-width: 1024px) {
+    .stats-container {
+        display: none;
+    }
+}

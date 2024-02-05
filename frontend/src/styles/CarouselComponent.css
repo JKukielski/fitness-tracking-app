@@ -19,20 +19,21 @@
 }
 
 
-/* @media screen and (max-width: 1024px) {
+@media screen and (max-width: 1024px) {
      .carousel-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+        grid-row-end: 2;
      }   
 }
 
 @media screen and (max-width: 768px) {
     .carousel-container {
-       grid-template-columns: repeat(2, 1fr);
-    }   
+          grid-template-columns: repeat(2, 1fr);
+          grid-row-end: 2;
+    }
+
+    .carousel-item {
+        height: 100px;
+    }
 }
 
-@media screen and (max-width: 425px) {
-    .carousel-container {
-        grid-template-columns: 1fr;
-    }
-} */

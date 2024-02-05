@@ -110,3 +110,51 @@
 .healthy {
     color: green; 
 }
+
+@media screen and (max-width: 1024px) {
+    .bmi-container {
+        grid-column-start: 2;
+        grid-column-end: 4;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    
+    .bmr-container {
+        grid-column-start: 4;
+        grid-column-end: 6;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .bmi-container {
+        grid-column-start: 3;
+        grid-column-end: 6;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+    
+    .bmr-container {
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .bmi-container {
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 3;
+        grid-row-end: 4;
+    }
+    
+    .bmr-container {
+        grid-column-start: 1;
+        grid-column-end: 6;
+        grid-row-start: 4;
+        grid-row-end: 5;
+    }
+}

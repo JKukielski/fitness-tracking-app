@@ -13,3 +13,29 @@
     font-size: 12px;
     color: green
 }
+
+@media screen and (max-width: 1024px) {
+    .target-container {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .target-container {
+        grid-column-start: 1;
+        grid-column-end: 3;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+}
+
+@media screen and (max-width: 426px) {
+    .target-container {
+        grid-column-end: 6;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+}

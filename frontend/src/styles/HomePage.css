@@ -8,3 +8,14 @@
     gap: 10px;
 }
 
+@media screen and (max-width: 1024px) {
+    .home-container {
+        grid-template-rows: repeat(5, 1fr); 
+    }
+}
+
+@media screen and (max-width: 425px) {
+    .home-container {
+        padding: 0 10px;
+    }
+}
