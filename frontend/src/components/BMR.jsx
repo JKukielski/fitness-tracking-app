@@ -1,17 +1,19 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../state/userSlice';
 import '../styles/BmiBmr.css';
+import { IoIosInformationCircleOutline } from 'react-icons/io';
 
 const BMR = () => {
-  const [weight, setWeight] = useState(0);
-  const [height, setHeight] = useState(0);
-  const [age, setAge] = useState(0);
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
+  const [age, setAge] = useState('');
   const [gender, setGender] = useState('male');
   const [success, setSuccess] = useState('');
   const { user } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  const [displayBmr, setDisplayBmr] = useState('');
 
   const calculateBMRforMen = () => {
     const heightInCentimeters = height;
@@ -49,10 +51,11 @@ const BMR = () => {
       if (response) {
         dispatch(updateUser({ user: response.data }));
       }
+      setDisplayBmr(bmr);
       setSuccess('BMR updated successfully');
-      setAge(0);
-      setWeight(0);
-      setHeight(0);
+      setAge('');
+      setWeight('');
+      setHeight('');
     } catch (err) {
       console.error(err);
     }
@@ -60,9 +63,11 @@ const BMR = () => {
 
   return (
     <form className="bmr-container" onSubmit={handleSubmitBMR}>
+      <IoIosInformationCircleOutline className="information-icon" />
       <p className="measurement-heading">
         Enter your weight, height and age to calculate BMR
       </p>
+
       <div className="radio-container">
         <label htmlFor="">
           Male
@@ -119,6 +124,10 @@ const BMR = () => {
           onChange={(e) => setAge(e.target.value)}
         />
       </label>
+
+      <div className="bmr-form-result-container">
+        {displayBmr && `${displayBmr}kcal`}
+      </div>
       <div className="measurement-button-container">
         <button type="submit" className="primary-button primary-button-bm">
           Calculate BMR

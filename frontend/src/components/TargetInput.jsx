@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../state/userSlice';
 
 const TargetInput = () => {
-  const [targetWeight, setTargetWeight] = useState(0);
+  const [targetWeight, setTargetWeight] = useState('');
   const [success, setSuccess] = useState('');
   const { user } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const TargetInput = () => {
         );
       }
       setSuccess('Target updated successfully!');
-      setTargetWeight(0);
+      setTargetWeight('');
     } catch (err) {
       console.log(err.message);
     }

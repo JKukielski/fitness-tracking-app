@@ -3,13 +3,25 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUser } from '../state/userSlice';
 import '../styles/BmiBmr.css';
+import { IoIosInformationCircleOutline } from 'react-icons/io';
 
 const BMI = () => {
-  const [weight, setWeight] = useState(0);
-  const [height, setHeight] = useState(0);
+  const [weight, setWeight] = useState('');
+  const [height, setHeight] = useState('');
   const [success, setSuccess] = useState('');
   const { user } = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
+  const [displayBmi, setDisplayBmi] = useState('');
+
+  const bmiDisplayColor = (bmiResult) => {
+    if (bmiResult >= 25 && bmiResult <= 29.9) {
+      return 'overweight';
+    } else if (bmiResult < 18.5) {
+      return 'underweight';
+    } else if (bmiResult >= 30) {
+      return 'obesity';
+    } else return 'healthy';
+  };
 
   const handleSubmitBMI = async (e) => {
     e.preventDefault();
@@ -26,9 +38,10 @@ const BMI = () => {
       if (response) {
         dispatch(updateUser({ user: response.data }));
       }
+      setDisplayBmi(bmi);
       setSuccess('BMI updated successfully!');
-      setHeight(0);
-      setWeight(0);
+      setHeight('');
+      setWeight('');
     } catch (err) {
       console.error(err);
     }
@@ -36,6 +49,7 @@ const BMI = () => {
 
   return (
     <form className="bmi-container" onSubmit={handleSubmitBMI}>
+      <IoIosInformationCircleOutline className="information-icon" />
       <p className="measurement-heading">
         Enter your weight and height to calculate BMI
       </p>
@@ -61,6 +75,11 @@ const BMI = () => {
           onChange={(e) => setHeight(e.target.value)}
         />
       </label>
+      <div className="form-result-container">
+        <p className={bmiDisplayColor(displayBmi)}>
+          {displayBmi && `${displayBmi}kcal`}
+        </p>
+      </div>
       <div className="measurement-button-container">
         <button type="submit" className="primary-button primary-button-bm">
           Calculate BMI
