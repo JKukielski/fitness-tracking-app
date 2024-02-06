@@ -25,30 +25,47 @@ const CarouselComponent = () => {
     fetchUser();
   }, [user]);
 
+  const bmiDisplayColor = (bmiResult) => {
+    if (bmiResult >= 25 && bmiResult <= 29.9) {
+      return 'overweight';
+    } else if (bmiResult < 18.5) {
+      return 'underweight';
+    } else if (bmiResult >= 30) {
+      return 'obesity';
+    } else return 'healthy';
+  };
+
   return (
     <div className="carousel-container">
       <div className="carousel-item">
         <p className="carousel-item-heading">Latest weight entry</p>
-        <p className="carousel-item-measurement">{user?.weight}kg</p>
+        <p className="carousel-item-measurement custom">
+          <span className="neutral-measurement">{user?.weight}kg</span>
+        </p>
       </div>
       <div className="carousel-item">
         <p className="carousel-item-heading">Latest BMI score</p>
-        <p className="carousel-item-measurement">{user?.bmi}</p>
+        <p className="carousel-item-measurement custom">
+          <span className={bmiDisplayColor(user?.bmi)}>{user?.bmi}</span>
+        </p>
       </div>
       <div className="carousel-item">
         <p className="carousel-item-heading">Latest BMR measurement</p>
-        <p className="carousel-item-measurement">{user?.bmr}kcal</p>
+        <p className="carousel-item-measurement custom">
+          <span className="neutral-measurement">{user?.bmr}kcal</span>
+        </p>
       </div>
       <div className="carousel-item">
         <p className="carousel-item-heading">
           {user?.bmi < 18.5
-            ? 'To achieve your target weight you should gain weight'
+            ? 'To achieve your target weight you should gain weight.'
             : user?.bmi > 24.9
-            ? 'To achieve your target weight you should lose weight'
+            ? 'To achieve your target weight you should lose weight.'
             : 'You have a healthy BMI!'}
         </p>
         <p className="carousel-item-measurement">
-          Healthy BMI range: 18.5 - 24.9
+          Healthy BMI range:{' '}
+          <span className="neutral-measurement">18.5 - 24.9</span>
         </p>
       </div>
       <div className="carousel-item">
