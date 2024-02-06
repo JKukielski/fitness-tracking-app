@@ -54,7 +54,7 @@ const BMI = () => {
         Enter your weight and height to calculate BMI
       </p>
       <label htmlFor="weight" className="measurement-label">
-        Current weight
+        Current weight (kg)
         <input
           type="number"
           name="weight"
@@ -65,7 +65,7 @@ const BMI = () => {
         />
       </label>
       <label htmlFor="height" className="measurement-label">
-        Current height
+        Current height (cm)
         <input
           type="number"
           name="height"
