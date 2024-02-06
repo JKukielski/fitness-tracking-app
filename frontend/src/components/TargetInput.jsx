@@ -35,7 +35,7 @@ const TargetInput = () => {
     <form className="target-container" onSubmit={handleSubmit}>
       <p className="measurement-heading">Enter your target weight</p>
       <label htmlFor="weight" className="measurement-label">
-        Target weight
+        Target weight (kg)
         <input
           type="number"
           name="target"
