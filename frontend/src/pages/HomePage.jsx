@@ -4,7 +4,7 @@ import CarouselComponent from '../components/CarouselComponent';
 import BMI from '../components/BMI';
 import BMR from '../components/BMR';
 import TargetInput from '../components/TargetInput';
-import Stats from '../components/Stats';
+import Exercises from '../components/Exercises';
 
 const HomePage = () => {
   return (
@@ -15,7 +15,7 @@ const HomePage = () => {
         <TargetInput />
         <BMI />
         <BMR />
-        <Stats />
+        <Exercises />
       </div>
     </>
   );
