@@ -48,7 +48,7 @@ const Exercises = () => {
         <input
           type="text"
           className="exercises-search-input"
-          placeholder="Search for an exercise..."
+          placeholder="Search for an exercise or choose body part below..."
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
         />

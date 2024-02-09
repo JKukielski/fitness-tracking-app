@@ -12,13 +12,12 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    gap: 20px;
 }
 
 .exercises-search-input {
-    width: 30%;
-    margin-top: 5px;
-    margin-bottom: 10px;
-    padding: 10px;
+    width: 35%;
+    padding: 20px;
     border-radius: 5px;
     font-size: 12px;
     background-color: var(--color-contrast);
