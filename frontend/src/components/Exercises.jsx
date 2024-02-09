@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import '../styles/Exercises.css';
 import { exerciseOptions, fetchData } from '../utils/fetchExerciseData';
+import Slider from './Slider';
 
 const Exercises = () => {
   const [search, setSearch] = useState('');
@@ -37,6 +38,7 @@ const Exercises = () => {
 
       setSearch('');
       setExercises(searchedExercises);
+      console.log(bodyParts);
     }
   };
 
@@ -45,6 +47,7 @@ const Exercises = () => {
       <div className="exercises-search-container">
         <input
           type="text"
+          className="exercises-search-input"
           placeholder="Search for an exercise..."
           value={search}
           onChange={(e) => setSearch(e.target.value.toLowerCase())}
@@ -53,6 +56,7 @@ const Exercises = () => {
           Search
         </button>
       </div>
+      <Slider data={bodyParts} />
     </div>
   );
 };
