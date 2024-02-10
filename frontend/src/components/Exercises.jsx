@@ -7,7 +7,7 @@ const Exercises = () => {
   const [search, setSearch] = useState('');
   const [exercises, setExercises] = useState([]);
   const [bodyParts, setBodyParts] = useState([]);
-  const [bodyPart, setBodyPart] = useState([]);
+  const [bodyPart, setBodyPart] = useState('all');
 
   useEffect(() => {
     const fetchExerciseData = async () => {
@@ -21,29 +21,6 @@ const Exercises = () => {
 
     fetchExerciseData();
   }, []);
-
-  useEffect(() => {
-    const fetchExercisesData = async () => {
-      let exercisesData = [];
-
-      if (bodyPart === 'all') {
-        exercisesData = await fetchData(
-          'https://exercisedb.p.rapidapi.com/exercises',
-          exerciseOptions
-        );
-      } else {
-        exercisesData = await fetchData(
-          `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
-          exerciseOptions
-        );
-      }
-
-      setExercises(exercisesData);
-      console.log(exercises);
-    };
-
-    fetchExercisesData();
-  }, [bodyPart]);
 
   const handleSubmit = async () => {
     if (search) {
@@ -65,6 +42,10 @@ const Exercises = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(exercises);
+  }, [exercises]);
+
   return (
     <div className="exercises-container">
       <div className="exercises-search-container">
@@ -84,6 +65,8 @@ const Exercises = () => {
         bodyParts
         setBodyPart={setBodyPart}
         bodyPart={bodyPart}
+        setExercises={setExercises}
+        exercises={exercises}
       />
     </div>
   );
