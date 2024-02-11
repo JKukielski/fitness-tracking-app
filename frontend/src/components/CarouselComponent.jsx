@@ -63,7 +63,7 @@ const CarouselComponent = () => {
             ? 'To achieve your target weight you should lose weight.'
             : 'You have a healthy BMI!'}
         </p>
-        <p className="carousel-item-measurement">
+        <p className="carousel-item-measurement range">
           Healthy BMI range:{' '}
           <span className="neutral-measurement">18.5 - 24.9</span>
         </p>

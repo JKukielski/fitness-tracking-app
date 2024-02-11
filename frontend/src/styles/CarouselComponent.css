@@ -38,6 +38,17 @@
     color: rgb(0, 89, 255);
 }
 
+@media screen and (max-width: 1440px) {
+
+    .carousel-item-heading {
+        font-size: 15px;
+    }
+
+    .carousel-item-measurement.range{
+        font-size: 13px;
+    }
+}
+
 
 @media screen and (max-width: 1024px) {
      .carousel-container {
