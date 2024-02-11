@@ -71,7 +71,7 @@ const Slider = ({
     <div className="slider-container">
       <div ref={containerRef} className="slider-inner-container">
         <div className="slider-content-box">
-          {dummyData.map((item) => (
+          {data.map((item) => (
             <div
               className="slider-element"
               key={item.id}

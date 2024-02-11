@@ -42,6 +42,19 @@
     border: 2px solid var(--color-primary-dark)
 }
 
+.exercises-container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+}
+
+.exercises-image {
+    width: 30px;
+    height: 30px;
+}
+
 @media screen and (max-width: 1024px) {
     .exercises-container {
         grid-column-start: 1;
