@@ -68,10 +68,15 @@ const Exercises = () => {
         setExercises={setExercises}
         exercises={exercises}
       />
-      <div className="exercises-container">
-        {exercises.slice(1, 3).map((item) => (
+      <div className="exercises-card-container">
+        {exercises.slice(0, 6).map((item) => (
           <div className="exercise-card" key={item.id}>
             <img src={item.gifUrl} alt="" className="exercise-image" />
+            <div className="exercise-card-inner-container">
+              <p className="exercise-detail primary">{item.bodyPart}</p>
+              <p className="exercise-detail">{item.target}</p>
+            </div>
+            <p className="exercise-name">{item.name}</p>
           </div>
         ))}
       </div>
