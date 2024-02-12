@@ -9,6 +9,8 @@ const Exercises = () => {
   const [exercises, setExercises] = useState([]);
   const [bodyParts, setBodyParts] = useState([]);
   const [bodyPart, setBodyPart] = useState('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [exercisesPerPage] = useState(6);
 
   useEffect(() => {
     const fetchExerciseData = async () => {
@@ -47,6 +49,19 @@ const Exercises = () => {
     console.log(exercises);
   }, [exercises]);
 
+  //Pagination
+
+  const indexOfLastExercise = currentPage * exercisesPerPage;
+  const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
+  const currentExercises = exercises.slice(
+    indexOfFirstExercise,
+    indexOfLastExercise
+  );
+
+  const paginate = (event, value) => {
+    setCurrentPage(value);
+  };
+
   return (
     <div className="exercises-container">
       <div className="exercises-search-container">
@@ -70,7 +85,7 @@ const Exercises = () => {
         exercises={exercises}
       />
       <div className="exercises-card-container">
-        {exercises.slice(0, 6).map((item) => (
+        {currentExercises.map((item) => (
           <div className="exercise-card" key={item.id}>
             <img src={item.gifUrl} alt="" className="exercise-image" />
             <div className="exercise-card-inner-container">
@@ -80,6 +95,15 @@ const Exercises = () => {
             <p className="exercise-name">{item.name}</p>
           </div>
         ))}
+      </div>
+      <div className="exercise-pagination">
+        {exercises.length > 9 && (
+          <Pagination
+            count={Math.ceil(exercises.length / exercisesPerPage)}
+            page={currentPage}
+            onChange={paginate}
+          />
+        )}
       </div>
     </div>
   );
