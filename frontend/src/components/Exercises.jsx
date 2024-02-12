@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import '../styles/Exercises.css';
 import { exerciseOptions, fetchData } from '../utils/fetchExerciseData';
 import Slider from './Slider';
 import Pagination from '@mui/material/Pagination';
+import { CircularProgress } from '@mui/material';
 
 const Exercises = () => {
   const [search, setSearch] = useState('');
@@ -11,6 +12,8 @@ const Exercises = () => {
   const [bodyPart, setBodyPart] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
+
+  const exerciseViewRef = useRef();
 
   useEffect(() => {
     const fetchExerciseData = async () => {
@@ -42,6 +45,10 @@ const Exercises = () => {
 
       setSearch('');
       setExercises(searchedExercises);
+
+      if (exerciseViewRef.current) {
+        exerciseViewRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -60,7 +67,12 @@ const Exercises = () => {
 
   const paginate = (event, value) => {
     setCurrentPage(value);
+    if (exerciseViewRef.current) {
+      exerciseViewRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
+
+  // if (!currentExercises.length) return <CircularProgress />;
 
   return (
     <div className="exercises-container">
@@ -84,10 +96,15 @@ const Exercises = () => {
         setExercises={setExercises}
         exercises={exercises}
       />
-      <div className="exercises-card-container">
+      <div className="exercises-card-container" ref={exerciseViewRef}>
         {currentExercises.map((item) => (
           <div className="exercise-card" key={item.id}>
-            <img src={item.gifUrl} alt="" className="exercise-image" />
+            {item.gifUrl ? (
+              <img src={item.gifUrl} alt="" className="exercise-image" />
+            ) : (
+              <CircularProgress />
+            )}
+
             <div className="exercise-card-inner-container">
               <p className="exercise-detail primary">{item.bodyPart}</p>
               <p className="exercise-detail">{item.target}</p>
@@ -97,7 +114,9 @@ const Exercises = () => {
         ))}
       </div>
       <div className="exercise-pagination">
-        {exercises.length > 9 && (
+        {exercises.length === 0 ? (
+          <CircularProgress />
+        ) : (
           <Pagination
             count={Math.ceil(exercises.length / exercisesPerPage)}
             page={currentPage}
