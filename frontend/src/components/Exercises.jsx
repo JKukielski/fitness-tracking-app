@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import '../styles/Exercises.css';
 import { exerciseOptions, fetchData } from '../utils/fetchExerciseData';
 import Slider from './Slider';
+import Pagination from '@mui/material/Pagination';
 
 const Exercises = () => {
   const [search, setSearch] = useState('');

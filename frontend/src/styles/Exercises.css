@@ -60,6 +60,13 @@
     padding: 20px;
     cursor: pointer;
     text-transform: capitalize;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 5px solid transparent; 
+    width: 400px;
+    /* height: 600px; */
 }
 
 .exercise-card:hover {
@@ -68,14 +75,21 @@
 
 .exercise-card-inner-container {
     display: flex;
+    justify-content: flex-start;
+    width: 100%;
     gap: 20px;
     margin: 20px 0;
+}
+
+.exercise-image {
+    height: 250px;
 }
 
 .exercise-detail {
     padding: 10px;
     border-radius: 15px;
     border: 2px solid var(--color-primary-dark);
+
 }
 
 .exercise-detail.primary {
@@ -87,6 +101,9 @@
     padding-left: 6px;
     font-size: 24px;
     font-weight: 600;
+    height: 80px;
+    width: 100%;
+    text-align: left;
 }
 
 @media screen and (max-width: 1024px) {
