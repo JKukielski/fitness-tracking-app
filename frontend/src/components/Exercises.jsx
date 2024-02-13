@@ -4,6 +4,7 @@ import { exerciseOptions, fetchData } from '../utils/fetchExerciseData';
 import Slider from './Slider';
 import Pagination from '@mui/material/Pagination';
 import { CircularProgress } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 const Exercises = () => {
   const [search, setSearch] = useState('');
@@ -98,7 +99,11 @@ const Exercises = () => {
       />
       <div className="exercises-card-container" ref={exerciseViewRef}>
         {currentExercises.map((item) => (
-          <div className="exercise-card" key={item.id}>
+          <Link
+            className="exercise-card"
+            key={item.id}
+            to={`/exercise/${item.id}`}
+          >
             {item.gifUrl ? (
               <img src={item.gifUrl} alt="" className="exercise-image" />
             ) : (
@@ -110,7 +115,7 @@ const Exercises = () => {
               <p className="exercise-detail">{item.target}</p>
             </div>
             <p className="exercise-name">{item.name}</p>
-          </div>
+          </Link>
         ))}
       </div>
       <div className="exercise-pagination">
