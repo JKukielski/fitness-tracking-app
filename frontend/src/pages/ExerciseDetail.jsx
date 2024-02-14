@@ -1,13 +1,19 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { exerciseOptions, fetchData } from '../utils/fetchExerciseData';
+import {
+  exerciseOptions,
+  fetchData,
+  youtubeOptions,
+} from '../utils/fetchExerciseData';
 import Navbar from '../components/Navbar';
 import { CgGym } from 'react-icons/cg';
 import { BiBody, BiTargetLock } from 'react-icons/bi';
 import '../styles/ExerciseDetail.css';
+import Slider from '../components/Slider';
 
 const ExerciseDetail = () => {
   const [exerciseDetail, setExerciseDetail] = useState({});
+  const [exerciseVideos, setExerciseVideos] = useState([]);
   const [similarMuscle, setSimilarMuscle] = useState([]);
   const [similarEquipment, setSimilarEquipment] = useState([]);
   const { id } = useParams();
@@ -19,6 +25,24 @@ const ExerciseDetail = () => {
         exerciseOptions
       );
       setExerciseDetail(exerciseDetailData);
+
+      // const exerciseVideosData = await fetchData(
+      //   `https://youtube-search-and-download.p.rapidapi.com/search?query=${exerciseDetailData.name}`,
+      //   youtubeOptions
+      // );
+      // setExerciseVideos(exerciseVideosData.contents);
+
+      const targetMuscleExercisesData = await fetchData(
+        `https://exercisedb.p.rapidapi.com/exercises/target/${exerciseDetailData.target}`,
+        exerciseOptions
+      );
+      setSimilarMuscle(targetMuscleExercisesData);
+
+      const equimentExercisesData = await fetchData(
+        `https://exercisedb.p.rapidapi.com/exercises/equipment/${exerciseDetailData.equipment}`,
+        exerciseOptions
+      );
+      setSimilarEquipment(equimentExercisesData);
     };
 
     fetchExerciseDetail();
@@ -56,7 +80,10 @@ const ExerciseDetail = () => {
             </div>
           </div>
         </div>
-        <div className="secondary-container"></div>
+        <div className="secondary-container">
+          {/* <Slider data={similarEquipment} />
+          <Slider data={similarMuscle} /> */}
+        </div>
       </div>
     </>
   );

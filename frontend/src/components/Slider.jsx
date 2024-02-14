@@ -6,28 +6,8 @@ import { useEffect, useRef, useState } from 'react';
 import { exerciseOptions, fetchData } from '../utils/fetchExerciseData';
 
 const item_width = 200;
-const dummyData = [
-  'all',
-  'back',
-  'cardio',
-  'chest',
-  'lower arms',
-  'lower legs',
-  'neck',
-  'shoulders',
-  'upper arms',
-  'upper legs',
-  'waist',
-];
 
-const Slider = ({
-  data,
-  bodyParts,
-  setBodyPart,
-  bodyPart,
-  setExercises,
-  exercises,
-}) => {
+const Slider = ({ data, setBodyPart, bodyPart, setExercises }) => {
   const [scrollPosition, setScrollPosition] = useState(0);
 
   const containerRef = useRef();
