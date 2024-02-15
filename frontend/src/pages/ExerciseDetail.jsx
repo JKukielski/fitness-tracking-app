@@ -10,6 +10,7 @@ import { CgGym } from 'react-icons/cg';
 import { BiBody, BiTargetLock } from 'react-icons/bi';
 import '../styles/ExerciseDetail.css';
 import Slider from '../components/Slider';
+import placeholder from '../assets/placeholder.jpg';
 
 const ExerciseDetail = () => {
   const [exerciseDetail, setExerciseDetail] = useState({});
@@ -32,17 +33,17 @@ const ExerciseDetail = () => {
       // );
       // setExerciseVideos(exerciseVideosData.contents);
 
-      const targetMuscleExercisesData = await fetchData(
-        `https://exercisedb.p.rapidapi.com/exercises/target/${exerciseDetailData.target}`,
-        exerciseOptions
-      );
-      setSimilarMuscle(targetMuscleExercisesData);
+      // const targetMuscleExercisesData = await fetchData(
+      //   `https://exercisedb.p.rapidapi.com/exercises/target/${exerciseDetailData.target}`,
+      //   exerciseOptions
+      // );
+      // setSimilarMuscle(targetMuscleExercisesData);
 
-      const equimentExercisesData = await fetchData(
-        `https://exercisedb.p.rapidapi.com/exercises/equipment/${exerciseDetailData.equipment}`,
-        exerciseOptions
-      );
-      setSimilarEquipment(equimentExercisesData);
+      // const equimentExercisesData = await fetchData(
+      //   `https://exercisedb.p.rapidapi.com/exercises/equipment/${exerciseDetailData.equipment}`,
+      //   exerciseOptions
+      // );
+      // setSimilarEquipment(equimentExercisesData);
     };
 
     fetchExerciseDetail();
@@ -53,30 +54,29 @@ const ExerciseDetail = () => {
       <Navbar />
       <div className="detail-container">
         <div className="detail-inner-container">
-          <img src={exerciseDetail.gifUrl} alt="" className="detail-image" />
+          <img src={placeholder} alt="" className="detail-image" />
           <div className="detail-content">
             <p className="detail-desc">
-              The <span>{exerciseDetail.name}</span> is one of the best
-              exercises to target your {exerciseDetail.target}. It will help you
-              improve your mood and gain energy.
+              The <span>sit up</span> is one of the best exercises to target
+              your waist. It will help you improve your mood and gain energy.
             </p>
             <div className="detail-element">
               <div className="detail-icon-container">
                 <BiBody className="detail-icon" />
               </div>
-              <p className="detail-element-text">{exerciseDetail.bodyPart}</p>
+              <p className="detail-element-text">Waist</p>
             </div>
             <div className="detail-element">
               <div className="detail-icon-container">
                 <BiTargetLock className="detail-icon" />
               </div>
-              <p className="detail-element-text">{exerciseDetail.target}</p>
+              <p className="detail-element-text">Abs</p>
             </div>
             <div className="detail-element">
               <div className="detail-icon-container">
                 <CgGym className="detail-icon" />
               </div>
-              <p className="detail-element-text">{exerciseDetail.equipment}</p>
+              <p className="detail-element-text">Body Weight</p>
             </div>
           </div>
         </div>
@@ -90,3 +90,38 @@ const ExerciseDetail = () => {
 };
 
 export default ExerciseDetail;
+
+// <div className="detail-container">
+//         <div className="detail-inner-container">
+//           <img src={placeholder} alt="" className="detail-image" />
+//           <div className="detail-content">
+//             <p className="detail-desc">
+//               The <span>{exerciseDetail.name}</span> is one of the best
+//               exercises to target your {exerciseDetail.target}. It will help you
+//               improve your mood and gain energy.
+//             </p>
+//             <div className="detail-element">
+//               <div className="detail-icon-container">
+//                 <BiBody className="detail-icon" />
+//               </div>
+//               <p className="detail-element-text">{exerciseDetail.bodyPart}</p>
+//             </div>
+//             <div className="detail-element">
+//               <div className="detail-icon-container">
+//                 <BiTargetLock className="detail-icon" />
+//               </div>
+//               <p className="detail-element-text">{exerciseDetail.target}</p>
+//             </div>
+//             <div className="detail-element">
+//               <div className="detail-icon-container">
+//                 <CgGym className="detail-icon" />
+//               </div>
+//               <p className="detail-element-text">{exerciseDetail.equipment}</p>
+//             </div>
+//           </div>
+//         </div>
+//         <div className="secondary-container">
+//           {/* <Slider data={similarEquipment} />
+//           <Slider data={similarMuscle} /> */}
+//         </div>
+//       </div>
